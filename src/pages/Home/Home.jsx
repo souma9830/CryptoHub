@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import "./Home.css";
 import { CoinContext } from "../../context/CoinContext";
 import { Link } from 'react-router-dom'
@@ -7,9 +6,8 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   const { allCoin, currency } = useContext(CoinContext);
   const [displayCoin, setDisplayCoin] = useState([]);
-
   const [input, setInput] = useState("");
-
+  const [visibleCount, setVisibleCount] = useState(10);
   const inputHandler = (event) => {
     setInput(event.target.value);
     if (event.target.value === "") {
@@ -28,6 +26,10 @@ const Home = () => {
   useEffect(() => {
     setDisplayCoin(allCoin);
   }, [allCoin]);
+  const loadMoreHandler = () => {
+    setVisibleCount(prev => prev + 5);
+  };
+
 
   return (
     <div className="home">
@@ -46,7 +48,7 @@ const Home = () => {
             required
           />
           <datalist id="coinlist">
-            {allCoin.map((item,index)=>(<option key={index} value={item.name}/>))}
+            {allCoin.map((item, index) => (<option key={index} value={item.name} />))}
           </datalist>
           <button type="submit">Search</button>
         </form>
@@ -59,10 +61,10 @@ const Home = () => {
           <p style={{ textAlign: "center" }}>24h Change</p>
           <p className="market-cap">Market Cap</p>
         </div>
-        {displayCoin.slice(0, 10).map((item, index) => (
+        {displayCoin.slice(0, visibleCount).map((item, index) => (
           <Link
-          to={`/coin/${item.id}`}
-          className="table-layout" key={index}>
+            to={`/coin/${item.id}`}
+            className="table-layout" key={index}>
             <p>{item.market_cap_rank}</p>
             <div>
               <img src={item.image}></img>
@@ -83,6 +85,13 @@ const Home = () => {
             </p>
           </Link>
         ))}
+        {/* LOAD MORE BUTTON */}
+        {visibleCount < displayCoin.length && (
+          <div className="load-more">
+            <button onClick={loadMoreHandler}>Load More</button>
+          </div>
+        )}
+
       </div>
     </div>
   );
