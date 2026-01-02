@@ -48,7 +48,7 @@ const Home = () => {
             required
           />
           <datalist id="coinlist">
-            {allCoin.map((item, index) => (<option key={index} value={item.name} />))}
+            {allCoin && allCoin.map((item, index) => (<option key={index} value={item.name} />))}
           </datalist>
           <button type="submit">Search</button>
         </form>

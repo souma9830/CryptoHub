@@ -10,21 +10,38 @@ export const CoinContextProvider = (props) => {
   });
 
   const fetchAllCoin = async () => {
+    const apiKey = import.meta.env.VITE_CG_API_KEY;
     const options = {
       method: "GET",
       headers: {
         accept: "application/json",
-        "x-cg-demo-api-key": import.meta.env.VITE_CG_API_KEY,
       },
     };
 
-    fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`,
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => setAllCoin(res))
-      .catch((err) => console.error(err));
+    // Add API key as query parameter if available
+    const url = apiKey 
+      ? `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&x_cg_demo_api_key=${apiKey}`
+      : `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`;
+
+    fetch(url, options)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`API Error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((res) => {
+        if (Array.isArray(res)) {
+          setAllCoin(res);
+        } else {
+          console.error("Invalid API response:", res);
+          setAllCoin([]);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch coins:", err);
+        setAllCoin([]);
+      });
   };
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { CoinContextProvider } from "./context/CoinContext";
-import { Auth0Provider } from '@auth0/auth0-react';
+import { Auth0Provider } from "@auth0/auth0-react";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,10 +14,9 @@ createRoot(document.getElementById("root")).render(
         clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
         authorizationParams={{
           redirect_uri: window.location.origin,
-          scope: "openid profile email",
         }}
-        useRefreshTokens={true}
         cacheLocation="localstorage"
+        useRefreshTokens={true}
       >
         <CoinContextProvider>
           <App />
