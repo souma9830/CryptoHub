@@ -8,8 +8,11 @@ export const CoinContextProvider = (props) => {
     name: "usd",
     Symbol: "$",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchAllCoin = async () => {
+    setIsLoading(true);
+    
     const apiKey = import.meta.env.VITE_CG_API_KEY;
     const options = {
       method: "GET",
@@ -41,6 +44,9 @@ export const CoinContextProvider = (props) => {
       .catch((err) => {
         console.error("Failed to fetch coins:", err);
         setAllCoin([]);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -52,7 +58,9 @@ export const CoinContextProvider = (props) => {
     allCoin,
     currency,
     setCurrency,
+    isLoading,
   };
+  
   return (
     <CoinContext.Provider value={contextValue}>
       {props.children}
