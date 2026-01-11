@@ -183,7 +183,7 @@ function Navbar() {
 
         <div className="nav-right desktop-only">
           {/* Currency Selector Removed as per request */}
-
+          
           {currentUser ? (
             <div className="user-menu">
               <span className="user-email">{currentUser.email}</span>
