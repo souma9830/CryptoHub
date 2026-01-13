@@ -34,6 +34,13 @@ import image27 from "../assets/27.png";
 import image29 from "../assets/29.png";
 import image30 from "../assets/30.png";
 
+// Create array of imported images
+const imageUrls = [
+  image1, image2, image3, image4, image5, image6, image7, image8, image9, image10,
+  image11, image12, image13, image14, image15, image16, image17, image18, image19, image20,
+  image21, image22, image23, image24, image25, image26, image27, image29, image30,//image28
+];
+
 // Categories and tags for variation
 const categories = ["Vector", "Market Pulse", "Week On-chain", "Research", "Partner Reports", "Market Vectors", "On-chain Analysis", "Market Intelligence"];
 const tags = ["Premium", "Free", "Featured"];
@@ -44,7 +51,6 @@ export const generateBlogPosts = () => {
   return [
     {
       id: 1,
-      slug: "the-bitcoin-vector-37",
       title: "The Bitcoin Vector #37",
       excerpt: "Bitcoin enters 2026 attempting to stabilise after its Q4 drawdown. The Vector models suggest a subtle shift in momentum as long-term holders resume accumulation.",
       date: "Jan 10, 2026",
@@ -60,18 +66,21 @@ export const generateBlogPosts = () => {
         sections: [
           {
             heading: "Market Overview",
-            text: "Bitcoin enters the new year with cautious optimism as markets attempt to stabilize following the Q4 2025 drawdown. The Vector framework indicates subtle shifts in market structure that professional traders should monitor closely. Long-term holder supply has resumed growth after a period of distribution, suggesting renewed conviction from Bitcoin's most steadfast investors."
+            text: "Bitcoin enters the new year with cautious optimism as markets attempt to stabilize following the Q4 2025 drawdown. The Vector framework indicates subtle shifts in market structure that professional traders should monitor closely."
           },
           {
             heading: "On-chain Metrics",
-            text: "Exchange balances continue their multi-year decline, with only 11.5% of circulating supply remaining on exchanges. The percentage of supply held in profit has recovered to 85%, indicating most holders remain in profit despite recent volatility. Realized capitalization growth suggests organic capital inflow rather than speculative trading."
+            text: "Long-term holder supply has resumed growth after a period of distribution, suggesting renewed conviction from Bitcoin's most steadfast investors. Exchange balances continue their multi-year decline, with only 11.5% of circulating supply remaining on exchanges."
+          },
+          {
+            heading: "Supply Dynamics",
+            text: "The percentage of supply held in profit has recovered to 85%, indicating most holders remain in profit despite recent volatility. Realized capitalization growth suggests organic capital inflow rather than speculative trading."
           }
         ]
       }
     },
     {
       id: 2,
-      slug: "week-on-chain-2-2026",
       title: "Week On-Chain #2 2026",
       excerpt: "Bitcoin shows early signs of stabilization as exchange outflows accelerate. Network fundamentals remain strong despite price volatility.",
       date: "Jan 9, 2026",
@@ -87,18 +96,17 @@ export const generateBlogPosts = () => {
         sections: [
           {
             heading: "Weekly Summary",
-            text: "The second week of 2026 shows Bitcoin attempting to establish a new equilibrium. Exchange net outflows totaled 15,000 BTC this week, the highest since November 2025. Major exchanges recorded significant outflows, particularly from institutional custody solutions."
+            text: "The second week of 2026 shows Bitcoin attempting to establish a new equilibrium. Exchange net outflows totaled 15,000 BTC this week, the highest since November 2025."
           },
           {
             heading: "Exchange Flows",
-            text: "This suggests accumulation by long-term investors despite uncertain price action. Network fundamentals remain strong with hash rate hitting new all-time highs and miner revenue stabilizing above critical levels."
+            text: "Major exchanges recorded significant outflows, particularly from institutional custody solutions. This suggests accumulation by long-term investors despite uncertain price action."
           }
         ]
       }
     },
     {
       id: 3,
-      slug: "market-pulse-january-2026",
       title: "Market Pulse: January 2026",
       excerpt: "Bitcoin volatility compresses as options markets signal uncertainty. Dealer gamma positioning suggests potential for explosive moves.",
       date: "Jan 8, 2026",
@@ -114,14 +122,17 @@ export const generateBlogPosts = () => {
         sections: [
           {
             heading: "Volatility Analysis",
-            text: "Bitcoin's 30-day realized volatility has compressed to 45%, approaching yearly lows. This compression often precedes significant directional moves. Dealer gamma exposure is turning positive near current price levels, creating potential for accelerated moves should key technical levels break."
+            text: "Bitcoin's 30-day realized volatility has compressed to 45%, approaching yearly lows. This compression often precedes significant directional moves."
+          },
+          {
+            heading: "Options Positioning",
+            text: "Dealer gamma exposure is turning positive near current price levels, creating potential for accelerated moves should key technical levels break."
           }
         ]
       }
     },
     {
       id: 4,
-      slug: "ethereum-merge-anniversary-report",
       title: "Ethereum: The Merge Anniversary Report",
       excerpt: "One year post-Merge: analyzing Ethereum's transition to proof-of-stake and its impact on supply dynamics, security, and network economics.",
       date: "Jan 7, 2026",
@@ -131,20 +142,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["Executive Summary", "Supply Dynamics", "Validator Economics", "Network Security", "Environmental Impact"],
-        sections: [
-          {
-            heading: "Executive Summary",
-            text: "One year after The Merge, Ethereum has successfully transitioned to proof-of-stake, reducing energy consumption by 99.95%. The network has seen significant improvements in security and economic efficiency."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 5,
-      slug: "altcoin-vector-35-layer-2-ecosystem",
       title: "Altcoin Vector #35: Layer 2 Ecosystem",
       excerpt: "Deep dive into Ethereum Layer 2 scaling solutions: Arbitrum, Optimism, zkSync, and StarkNet adoption metrics and value capture analysis.",
       date: "Jan 6, 2026",
@@ -154,20 +155,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["Market Overview", "Technology Comparison", "Adoption Metrics", "Token Economics", "Risk Assessment"],
-        sections: [
-          {
-            heading: "Market Overview",
-            text: "The Ethereum Layer 2 ecosystem has grown to over $45 billion in Total Value Locked (TVL). Arbitrum leads with 40% market share, followed by Optimism at 25% and zkSync at 15%."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 6,
-      slug: "bitcoin-mining-report-q4-2025",
       title: "Bitcoin Mining Report: Q4 2025",
       excerpt: "Analysis of Bitcoin mining industry post-halving: hash rate trends, miner revenue, and the transition to sustainable energy sources.",
       date: "Jan 5, 2026",
@@ -177,20 +168,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Hash Rate Analysis", "Miner Profitability", "Energy Consumption", "Geographic Distribution", "Future Outlook"],
-        sections: [
-          {
-            heading: "Hash Rate Analysis",
-            text: "Bitcoin hash rate reached 750 EH/s in Q4 2025, representing 45% year-over-year growth. The mining industry has successfully navigated the post-halving environment through efficiency improvements."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 7,
-      slug: "defi-liquidity-dynamics-2026",
       title: "DeFi Liquidity Dynamics 2026",
       excerpt: "Comprehensive analysis of DeFi liquidity patterns across Ethereum, Solana, and emerging L2 ecosystems. TVL concentration and yield opportunities.",
       date: "Jan 4, 2026",
@@ -200,20 +181,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["TVL Analysis", "Yield Opportunities", "Risk Assessment", "Protocol Comparison", "Market Trends"],
-        sections: [
-          {
-            heading: "TVL Analysis",
-            text: "DeFi Total Value Locked (TVL) has recovered to $95 billion, with Ethereum maintaining 65% dominance. Solana has emerged as a strong contender with 20% market share."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 8,
-      slug: "institutional-adoption-tracker",
       title: "Institutional Adoption Tracker",
       excerpt: "Monthly update on institutional Bitcoin and Ethereum investments: ETF flows, corporate treasuries, and regulated product growth.",
       date: "Jan 3, 2026",
@@ -223,20 +194,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["ETF Flows", "Corporate Adoption", "Regulatory Developments", "Product Innovation", "Market Impact"],
-        sections: [
-          {
-            heading: "ETF Flows",
-            text: "US Bitcoin ETFs recorded $2.5 billion in net inflows in December 2025. BlackRock's IBIT leads with $1.2 billion, followed by Fidelity's FBTC with $800 million."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 9,
-      slug: "nft-market-analysis-2025-review",
       title: "NFT Market Analysis: 2025 Review",
       excerpt: "Year-end review of NFT market dynamics: trading volumes, collection performance, and the rise of utility-based NFTs.",
       date: "Jan 2, 2026",
@@ -246,20 +207,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["Market Overview", "Top Collections", "Trading Volume", "Utility NFTs", "Future Trends"],
-        sections: [
-          {
-            heading: "Market Overview",
-            text: "NFT trading volume reached $15 billion in 2025, with utility-based NFTs driving 60% of total volume. The market has matured beyond speculative collectibles to functional digital assets."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 10,
-      slug: "stablecoin-supply-analysis",
       title: "Stablecoin Supply Analysis",
       excerpt: "Tracking stablecoin supply changes as a proxy for liquidity conditions and capital rotation within crypto markets.",
       date: "Jan 1, 2026",
@@ -269,20 +220,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Supply Trends", "Market Dominance", "Regulatory Impact", "Use Cases", "Risk Factors"],
-        sections: [
-          {
-            heading: "Supply Trends",
-            text: "Total stablecoin supply stands at $160 billion, with USDT maintaining 75% dominance. USDC follows with 20% market share. Stablecoin supply changes remain a reliable indicator of crypto market liquidity."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 11,
-      slug: "bitcoin-macro-indicators",
       title: "Bitcoin Macro Indicators",
       excerpt: "Combining on-chain data with traditional macro indicators to forecast Bitcoin's performance in different economic regimes.",
       date: "Dec 31, 2025",
@@ -292,20 +233,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["Methodology", "Indicator Correlation", "Market Regimes", "Forecasting Models", "Risk Management"],
-        sections: [
-          {
-            heading: "Methodology",
-            text: "Our analysis combines 15 on-chain metrics with 10 traditional macro indicators to create a comprehensive Bitcoin performance forecasting model. The model has demonstrated 85% accuracy in identifying market regime changes."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 12,
-      slug: "lightning-network-growth-report",
       title: "Lightning Network Growth Report",
       excerpt: "Analysis of Bitcoin Lightning Network adoption: capacity growth, channel dynamics, and real-world payment usage.",
       date: "Dec 30, 2025",
@@ -315,20 +246,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["Network Capacity", "Channel Dynamics", "Payment Volume", "Adoption Metrics", "Future Development"],
-        sections: [
-          {
-            heading: "Network Capacity",
-            text: "Lightning Network capacity has grown to 5,800 BTC ($500 million), representing 300% year-over-year growth. The network now processes over 1 million transactions daily."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 13,
-      slug: "crypto-derivatives-landscape",
       title: "Crypto Derivatives Landscape",
       excerpt: "Comprehensive overview of crypto derivatives markets: futures, options, and perpetual swaps across major exchanges.",
       date: "Dec 29, 2025",
@@ -338,20 +259,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["Market Structure", "Volume Analysis", "Exchange Comparison", "Product Innovation", "Regulatory Status"],
-        sections: [
-          {
-            heading: "Market Structure",
-            text: "Crypto derivatives trading volume reached $3.2 trillion in December 2025, with perpetual swaps accounting for 70% of total volume. Options trading has grown to 15% market share."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 14,
-      slug: "ethereum-staking-economics",
       title: "Ethereum Staking Economics",
       excerpt: "Deep dive into Ethereum staking yields, validator economics, and the impact of restaking protocols on network security.",
       date: "Dec 28, 2025",
@@ -361,20 +272,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Staking Yields", "Validator Economics", "Restaking Protocols", "Security Impact", "Future Developments"],
-        sections: [
-          {
-            heading: "Staking Yields",
-            text: "Ethereum staking APY currently stands at 4.2%, with 32 million ETH (27% of supply) currently staked. Validator queue times have normalized to 1-2 days."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 15,
-      slug: "cross-chain-bridge-security",
       title: "Cross-Chain Bridge Security",
       excerpt: "Analysis of security practices and vulnerabilities in major cross-chain bridges following recent exploit incidents.",
       date: "Dec 27, 2025",
@@ -384,20 +285,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["Security Assessment", "Vulnerability Analysis", "Best Practices", "Audit Findings", "Risk Mitigation"],
-        sections: [
-          {
-            heading: "Security Assessment",
-            text: "Cross-chain bridges remain a primary attack vector, accounting for 60% of total DeFi exploit losses in 2025. Our analysis identifies 5 critical security improvements needed across major bridge protocols."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 16,
-      slug: "bitcoin-halving-impact-study",
       title: "Bitcoin Halving Impact Study",
       excerpt: "Historical analysis of previous Bitcoin halvings and data-driven projections for the 2024 halving's market impact.",
       date: "Dec 26, 2025",
@@ -407,20 +298,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["Historical Analysis", "Price Impact", "Miner Economics", "Market Cycles", "Future Projections"],
-        sections: [
-          {
-            heading: "Historical Analysis",
-            text: "Analysis of previous Bitcoin halvings shows consistent patterns: 12-18 month bull markets following each halving, with average returns of 3,000% from halving to cycle peak."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 17,
-      slug: "regulatory-developments-tracker",
       title: "Regulatory Developments Tracker",
       excerpt: "Monthly update on global crypto regulatory developments and their potential market implications.",
       date: "Dec 25, 2025",
@@ -430,20 +311,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["US Regulations", "EU Regulations", "Asia-Pacific", "Emerging Markets", "Compliance Requirements"],
-        sections: [
-          {
-            heading: "US Regulations",
-            text: "The SEC approved spot Ethereum ETFs in December 2025, following the Bitcoin ETF precedent. Regulatory clarity continues to improve with the passage of the Digital Asset Market Structure bill."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 18,
-      slug: "smart-contract-audit-trends",
       title: "Smart Contract Audit Trends",
       excerpt: "Analysis of smart contract security audit findings and emerging best practices in Web3 development.",
       date: "Dec 24, 2025",
@@ -453,20 +324,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Audit Findings", "Common Vulnerabilities", "Best Practices", "Tooling Evolution", "Industry Standards"],
-        sections: [
-          {
-            heading: "Audit Findings",
-            text: "Analysis of 500 smart contract audits reveals 40% of projects had critical vulnerabilities. The most common issues include reentrancy attacks (25%), access control flaws (20%), and arithmetic errors (15%)."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 19,
-      slug: "crypto-venture-capital-report",
       title: "Crypto Venture Capital Report",
       excerpt: "Q4 2025 analysis of venture capital flows into crypto and blockchain startups across different verticals.",
       date: "Dec 23, 2025",
@@ -476,20 +337,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["Funding Overview", "Sector Analysis", "Geographic Distribution", "Deal Size Trends", "Investor Sentiment"],
-        sections: [
-          {
-            heading: "Funding Overview",
-            text: "Crypto VC funding reached $8.2 billion in Q4 2025, with infrastructure projects receiving 40% of total funding. Average deal size increased to $15 million, up from $8 million in 2024."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 20,
-      slug: "mev-miner-extractable-value-research",
       title: "MEV (Miner Extractable Value) Research",
       excerpt: "Comprehensive study of MEV in Ethereum and other PoS networks: detection, quantification, and mitigation strategies.",
       date: "Dec 22, 2025",
@@ -499,20 +350,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["MEV Detection", "Quantification Methods", "Impact Analysis", "Mitigation Strategies", "Protocol Design"],
-        sections: [
-          {
-            heading: "MEV Detection",
-            text: "Our research identifies $450 million in MEV extracted from Ethereum in 2025, with arbitrage opportunities accounting for 60% of total MEV. Sandwich attacks represent 25% of extracted value."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 21,
-      slug: "bitcoin-adoption-metrics",
       title: "Bitcoin Adoption Metrics",
       excerpt: "Tracking Bitcoin adoption through on-chain metrics: active addresses, new entities, and transaction patterns.",
       date: "Dec 21, 2025",
@@ -522,20 +363,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["Active Addresses", "New Entities", "Transaction Patterns", "Geographic Distribution", "Adoption Rate"],
-        sections: [
-          {
-            heading: "Active Addresses",
-            text: "Bitcoin active addresses reached 1.2 million daily, representing 25% year-over-year growth. New entities joining the network average 350,000 per month, indicating sustained adoption growth."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 22,
-      slug: "zero-knowledge-proof-applications",
       title: "Zero-Knowledge Proof Applications",
       excerpt: "Exploring practical applications of ZK-proofs in blockchain scalability, privacy, and interoperability solutions.",
       date: "Dec 20, 2025",
@@ -545,20 +376,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Technology Overview", "Scalability Solutions", "Privacy Applications", "Interoperability", "Future Developments"],
-        sections: [
-          {
-            heading: "Technology Overview",
-            text: "Zero-knowledge proofs have evolved from theoretical concepts to practical solutions, enabling 100x transaction throughput improvements while maintaining privacy guarantees."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 23,
-      slug: "crypto-market-correlation-study",
       title: "Crypto Market Correlation Study",
       excerpt: "Analysis of correlation patterns between crypto assets and traditional financial markets under different regimes.",
       date: "Dec 19, 2025",
@@ -568,20 +389,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["Correlation Analysis", "Market Regimes", "Risk Factors", "Portfolio Implications", "Hedging Strategies"],
-        sections: [
-          {
-            heading: "Correlation Analysis",
-            text: "Bitcoin's correlation with the S&P 500 has decreased to 0.35, down from 0.65 in 2022. Crypto markets are developing their own distinct risk-return profile separate from traditional assets."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 24,
-      slug: "dao-governance-analysis",
       title: "DAO Governance Analysis",
       excerpt: "Study of DAO governance patterns: voter participation, proposal success rates, and treasury management practices.",
       date: "Dec 18, 2025",
@@ -591,20 +402,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["Governance Models", "Voter Participation", "Proposal Analysis", "Treasury Management", "Best Practices"],
-        sections: [
-          {
-            heading: "Governance Models",
-            text: "Analysis of 100 major DAOs reveals average voter participation of 15%. Successful DAOs implement multi-tier governance structures with clear delegation mechanisms."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 25,
-      slug: "crypto-tax-reporting-guide",
       title: "Crypto Tax Reporting Guide",
       excerpt: "Comprehensive guide to crypto tax reporting requirements across major jurisdictions for 2025 tax year.",
       date: "Dec 17, 2025",
@@ -614,20 +415,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["US Tax Requirements", "EU Regulations", "Asia-Pacific", "Record Keeping", "Software Solutions"],
-        sections: [
-          {
-            heading: "US Tax Requirements",
-            text: "US taxpayers must report all crypto transactions exceeding $600. The IRS has implemented Form 1099-DA for digital asset reporting, requiring exchanges to provide detailed transaction records."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 26,
-      slug: "bitcoin-technical-analysis",
       title: "Bitcoin Technical Analysis",
       excerpt: "Combining on-chain data with technical analysis to identify key support and resistance levels for Bitcoin.",
       date: "Dec 16, 2025",
@@ -637,20 +428,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Technical Indicators", "On-chain Support", "Resistance Levels", "Market Structure", "Trading Strategies"],
-        sections: [
-          {
-            heading: "Technical Indicators",
-            text: "Bitcoin is testing the 200-day moving average at $85,000. Key resistance sits at $95,000, while strong support exists at $78,000. RSI shows neutral conditions at 52."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     },
     {
       id: 27,
-      slug: "web3-social-media-trends",
       title: "Web3 Social Media Trends",
       excerpt: "Analysis of emerging Web3 social media platforms and their token economic models compared to traditional social media.",
       date: "Dec 15, 2025",
@@ -660,20 +441,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#9d4edd",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)",
-      content: {
-        toc: ["Platform Analysis", "Token Economics", "User Adoption", "Content Monetization", "Future Outlook"],
-        sections: [
-          {
-            heading: "Platform Analysis",
-            text: "Web3 social platforms have attracted 50 million monthly active users. Farcaster leads with 2 million users, followed by Lens Protocol with 1.5 million. Creator earnings average 5-10x higher than Web2 platforms."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #9d4edd30, #f59e0b20)"
     },
     {
       id: 28,
-      slug: "crypto-insurance-market",
       title: "Crypto Insurance Market",
       excerpt: "Overview of the growing crypto insurance market: coverage options, premium trends, and risk assessment methodologies.",
       date: "Dec 14, 2025",
@@ -683,20 +454,10 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#f59e0b",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)",
-      content: {
-        toc: ["Market Size", "Coverage Types", "Premium Analysis", "Risk Assessment", "Future Growth"],
-        sections: [
-          {
-            heading: "Market Size",
-            text: "The crypto insurance market has grown to $12 billion in coverage, with premiums reaching $300 million annually. Custody solutions represent 60% of insured assets."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #f59e0b30, #4559DC20)"
     },
     {
       id: 29,
-      slug: "bitcoin-layer-2-solutions",
       title: "Bitcoin Layer 2 Solutions",
       excerpt: "Comparative analysis of Bitcoin Layer 2 scaling solutions: Lightning Network, Stacks, Rootstock, and emerging protocols.",
       date: "Dec 13, 2025",
@@ -706,20 +467,10 @@ export const generateBlogPosts = () => {
       tag: "Free",
       badgeColor: "#4559DC",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)",
-      content: {
-        toc: ["Solution Comparison", "Adoption Metrics", "Technical Architecture", "Use Cases", "Future Development"],
-        sections: [
-          {
-            heading: "Solution Comparison",
-            text: "Bitcoin Layer 2 solutions now process 25% of total Bitcoin transaction volume. Lightning Network leads with 15 million channels, while Stacks has enabled $500 million in DeFi TVL."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #4559DC30, #22c55e20)"
     },
     {
       id: 30,
-      slug: "crypto-market-forecast-2026",
       title: "Crypto Market Forecast 2026",
       excerpt: "Data-driven forecast for crypto markets in 2026 based on historical patterns, on-chain indicators, and macro trends.",
       date: "Dec 12, 2025",
@@ -729,16 +480,7 @@ export const generateBlogPosts = () => {
       tag: "Premium",
       badgeColor: "#22c55e",
       isFeatured: false,
-      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)",
-      content: {
-        toc: ["Methodology", "Bitcoin Forecast", "Altcoin Outlook", "Risk Factors", "Investment Strategy"],
-        sections: [
-          {
-            heading: "Methodology",
-            text: "Our 2026 forecast combines 25 quantitative indicators with qualitative analysis. The model projects Bitcoin reaching $150,000-$180,000 by year-end, driven by institutional adoption and ETF inflows."
-          }
-        ]
-      }
+      gradient: "linear-gradient(135deg, #22c55e30, #9d4edd20)"
     }
   ];
 };
@@ -753,7 +495,7 @@ export default function Blog() {
     <div className="blog-page glassnode-style">
       <div className="blog-container">
         
-        {/* Hero Section */}
+        {/* Hero Section - Glassnode Inspired */}
         <section className="glassnode-hero">
           <motion.div 
             className="hero-content"
@@ -797,7 +539,7 @@ export default function Blog() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15, duration: 0.4 }}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                onClick={() => navigate(`/blog/${post.slug}`)}
+                onClick={() => navigate(`/blog/${post.id}`, { state: { post } })}
               >
                 <div className="card-image-container">
                   <div className="image-gradient-overlay" style={{ background: post.gradient }}></div>
@@ -879,7 +621,7 @@ export default function Blog() {
                 transition={{ delay: (index % 12) * 0.05, duration: 0.3 }}
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                onClick={() => navigate(`/blog/${post.slug}`)}
+                onClick={() => navigate(`/blog/${post.id}`, { state: { post } })}
               >
                 <div className="post-image-container">
                   <img 
