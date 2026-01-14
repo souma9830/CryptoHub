@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import { CoinContext } from "../../context/CoinContext";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import { FiSearch, FiArrowUpRight, FiArrowDownRight, FiFilter } from "react-icons/fi";
 import { motion } from "framer-motion";
 import MarketFilters from "../../components/MarketFilters";
+import { Virtuoso } from 'react-virtuoso';
 
 const Home = () => {
-  const { allCoin, filteredCoins,currency } = useContext(CoinContext);
+  const { allCoin, filteredCoins, currency } = useContext(CoinContext);
   const [displayCoin, setDisplayCoin] = useState([]);
   const [input, setInput] = useState("");
-  const [visibleCount, setVisibleCount] = useState(10);
+  // Removed visibleCount state as Virtual Scrolling handles this now
   const [showFilters, setShowFilters] = useState(false);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -25,7 +25,7 @@ const Home = () => {
     e.preventDefault();
     if (input && filteredCoins) {
       setDisplayCoin(
-       filteredCoins.filter((item) =>
+        filteredCoins.filter((item) =>
           item.name.toLowerCase().includes(input.toLowerCase())
         )
       );
@@ -42,13 +42,8 @@ const Home = () => {
     setShowFilters(false);
   };
 
-  const loadMoreHandler = () => {
-    setVisibleCount(prev => prev + 10);
-  };
-
   useEffect(() => {
     setDisplayCoin(filteredCoins);
-     setVisibleCount(10);
   }, [filteredCoins]);
 
   return (
@@ -58,7 +53,6 @@ const Home = () => {
         -------------------------------------------
       */}
       <section className="cosmic-hero">
-        {/* Background Gradients & Glows */}
         <div className="hero-glow-center"></div>
         <div className="hero-planet"></div>
 
@@ -163,22 +157,20 @@ const Home = () => {
       </section>
 
       {/* -------------------------------------------
-        MARKET DATA SECTION
+        MARKET DATA SECTION (Virtualized)
         -------------------------------------------
       */}
       <section className="market-section">
-            <div className="section-header">
-             <h2>Market Overview</h2>
-
-              <div className="market-actions">
-                 <div className="live-indicator">
-                   <span className="dot-pulse"></span>
-                  Live Updates
-                 </div>
-
-               <MarketFilters />
-              </div>
-           </div>
+        <div className="section-header">
+          <h2>Market Overview</h2>
+          <div className="market-actions">
+            <div className="live-indicator">
+              <span className="dot-pulse"></span>
+              Live Updates
+            </div>
+            <MarketFilters />
+          </div>
+        </div>
 
         <div className="table-container glass-panel">
           <div className="table-header">
@@ -191,15 +183,13 @@ const Home = () => {
 
           <div className="table-body">
             {displayCoin && displayCoin.length > 0 ? (
-              displayCoin.slice(0, visibleCount).map((item, index) => (
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  key={index}
-                >
-                  <Link to={`/coin/${item.id}`} className="table-row">
+              /* VIRTUAL SCROLLER IMPLEMENTATION */
+              <Virtuoso
+                useWindowScroll
+                data={displayCoin}
+                totalCount={displayCoin.length}
+                itemContent={(index, item) => (
+                  <Link to={`/coin/${item.id}`} className="table-row" key={index}>
                     <div className="col-rank">{item.market_cap_rank}</div>
                     <div className="col-name">
                       <img src={item.image} alt={item.name} className="coin-icon" />
@@ -209,38 +199,32 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="col-price">
-                      {currency.Symbol}{item.current_price.toLocaleString()}
+                      {currency.Symbol || currency.symbol}{item.current_price.toLocaleString()}
                     </div>
                     <div className={`col-change ${item.price_change_percentage_24h > 0 ? "positive" : "negative"}`}>
                       {item.price_change_percentage_24h > 0 ? <FiArrowUpRight /> : <FiArrowDownRight />}
                       {Math.abs(item.price_change_percentage_24h).toFixed(2)}%
                     </div>
                     <div className="col-mcap">
-                      {currency.Symbol}{item.market_cap.toLocaleString()}
+                      {currency.Symbol || currency.symbol}{item.market_cap.toLocaleString()}
                     </div>
                   </Link>
-                </motion.div>
-              ))
+                )}
+              />
             ) : (
-              <div style={{ 
-                padding: '40px', 
-                textAlign: 'center', 
+              <div style={{
+                padding: '40px',
+                textAlign: 'center',
                 color: '#fff',
-                fontSize: '1.1rem' 
+                fontSize: '1.1rem'
               }}>
                 {allCoin && allCoin.length === 0 ? 'Loading crypto data...' : 'No coins found. Try adjusting your filters.'}
               </div>
             )}
           </div>
         </div>
-
-        {visibleCount < displayCoin.length && (
-          <div className="load-more-wrapper">
-            <button className="btn-neon" onClick={() => setVisibleCount(visibleCount + 10)}>
-              Discover More
-            </button>
-          </div>
-        )}
+        
+        {/* Load More Button removed because Virtual Scrolling handles infinite lists automatically */}
       </section>
 
       <datalist id="coinlist">
