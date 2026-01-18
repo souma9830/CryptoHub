@@ -1,4 +1,4 @@
-name: PR auto label & assign
+name: "PR auto label & assign"
 
 on:
   pull_request_target:
