@@ -26,7 +26,6 @@ import { CoinContext } from "@/context/CoinContext";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import ScrollToTop from "@/components/ScrollToTop";
-// ...............................................................
 import PrivacyPolicy from "./components/PrivacyPolicy";
 
 
@@ -110,8 +109,9 @@ const App = () => {
               
               {/* Add 404 Route if you implemented it earlier */}
               {/* <Route path="*" element={<NotFound />} /> */}
-              
+
               <Route path="/privacy" element={<PrivacyPolicy />} />
+
 
             </Routes>
             {!isDashboard && <Footer />}
