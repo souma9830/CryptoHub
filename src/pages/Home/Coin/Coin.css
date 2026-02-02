@@ -93,8 +93,18 @@
   height: 140px;
   border-radius: 50%;
   background: none;
-  box-shadow: none;
+  box-shadow: 0 0 0 rgba(121, 39, 255, 0);
   margin-bottom: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.4s ease,
+              filter 0.4s ease;
+}
+
+.coin-logo:hover {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 8px 30px rgba(121, 39, 255, 0.35),
+              0 0 20px rgba(33, 147, 176, 0.25);
+  filter: brightness(1.1);
 }
 
 .coin-name-below {
@@ -108,6 +118,13 @@
   margin-top: 18px;
   margin-bottom: 0;
   text-align: center;
+  transition: transform 0.3s ease,
+              filter 0.3s ease;
+}
+
+.coin-name-below:hover {
+  transform: scale(1.03);
+  filter: brightness(1.15);
 }
 
 .coin-symbol {
@@ -128,6 +145,16 @@
     box-shadow: 0 2px 16px 0 rgba(33, 147, 176, 0.13);
     padding: 18px 10px 10px 10px;
     border: 2px solid #7927ff22;
+    transition: transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+}
+
+.coin-chart:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(121, 39, 255, 0.2),
+                0 4px 20px rgba(33, 147, 176, 0.15);
+    border-color: #7927ff55;
 }
 
 .coin-right {
@@ -142,6 +169,18 @@
     padding: 36px 36px 8px 36px;
     margin-top: 38px;
     margin-bottom: 0;
+    transition: transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease,
+                background 0.35s ease;
+}
+
+.coin-right:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(121, 39, 255, 0.18),
+                0 5px 25px rgba(33, 147, 176, 0.12);
+    border-color: #7927ff55;
+    background: rgba(255, 255, 255, 0.09);
 }
 
 .coin-info {
@@ -157,6 +196,19 @@
   border-bottom: 1px solid #5f5d5f;
   list-style: none;
   font-size: 1.18rem;
+  border-radius: 8px;
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: background 0.3s ease,
+              transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.coin-info ul:hover {
+  background: rgba(121, 39, 255, 0.08);
+  transform: translateX(6px);
+  box-shadow: -4px 0 0 #7927ff;
 }
 
 .coin-info ul:last-child {
