@@ -24,4 +24,10 @@ export default defineConfig({
       interval: 1000, // Set polling interval (in ms) to limit CPU usage
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    css: true,
+  },
 })
