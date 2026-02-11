@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import "./contributors.css"; 
+import "./contributors.css";
 
 const OWNER = "KaranUnique";
 const REPO = "CryptoHub";
 const GITHUB_API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}`;
 const PER_PAGE = 100;
+const ITEMS_PER_PAGE_DISPLAY = 6;
 
 // Precompiled regex for level extraction (avoid re-creating per call)
 const LEVEL_REGEX = /level[\s-]*(1|2|3)/;
@@ -15,7 +16,7 @@ const PROJECT_ADMIN = {
   repo: "CryptoHub",
   repoUrl: `https://github.com/${OWNER}/${REPO}`,
   githubUrl: `https://github.com/${OWNER}`,
-  avatarUrl: `https://avatars.githubusercontent.com/${OWNER}?v=4&s=200`, 
+  avatarUrl: `https://avatars.githubusercontent.com/${OWNER}?v=4&s=200`,
   description: "Project Creator & Lead Maintainer"
 };
 
@@ -184,6 +185,7 @@ const Contributors = () => {
   const [selectedRankFilter, setSelectedRankFilter] = useState("all");
   const [selectedContributor, setSelectedContributor] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // AbortController ref for cleanup on unmount
   const abortRef = useRef(null);
@@ -278,6 +280,19 @@ const Contributors = () => {
 
     return result;
   }, [contributors, debouncedSearch, selectedRankFilter, sortBy]);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearch, sortBy, selectedRankFilter]);
+
+  // Calculate pagination
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE_DISPLAY;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE_DISPLAY;
+  const currentContributors = filteredContributors.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredContributors.length / ITEMS_PER_PAGE_DISPLAY);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleOpenModal = useCallback((contributor) => {
     setSelectedContributor(contributor);
@@ -390,13 +405,13 @@ const Contributors = () => {
           </div>
 
           <div className="project-admin-actions">
-            <button 
+            <button
               className="btn btn-primary project-admin-btn"
               onClick={() => handleOpenGitHubProfile(PROJECT_ADMIN.githubUrl)}
             >
               View GitHub Profile →
             </button>
-            <button 
+            <button
               className="btn btn-outline project-admin-btn"
               onClick={handleOpenRepo}
             >
@@ -417,7 +432,7 @@ const Contributors = () => {
         {error && (
           <div className="error-container">
             <p className="contributors-error">{error}</p>
-            <p style={{fontSize: '0.85rem', color: '#9ca3af'}}>
+            <p style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
               Stats will show "No contributors found" - normal if repo has no merged PRs yet.
             </p>
           </div>
@@ -426,24 +441,71 @@ const Contributors = () => {
         {!loading && !error && filteredContributors.length === 0 && (
           <div className="empty-state">
             <p className="contributors-empty">No contributors found.</p>
-            <p style={{fontSize: '0.9rem', color: '#9ca3af'}}>
-              No merged pull requests in KaranUnique/CryptoHub yet. 
-              <br/>Stats show 0 contributors, 0 PRs, 0 points ✅
+            <p style={{ fontSize: '0.9rem', color: '#9ca3af' }}>
+              No merged pull requests in KaranUnique/CryptoHub yet.
+              <br />Stats show 0 contributors, 0 PRs, 0 points ✅
             </p>
           </div>
         )}
 
         {!loading && !error && filteredContributors.length > 0 && (
-          <div className="contributors-grid">
-            {filteredContributors.map((c) => (
-              <ContributorCard
-                key={c.username}
-                contributor={c}
-                onOpenModal={handleOpenModal}
-                onOpenGitHub={handleOpenGitHubProfile}
-              />
-            ))}
-          </div>
+          <>
+            <div className="contributors-grid">
+              {currentContributors.map((c) => (
+                <ContributorCard
+                  key={c.username}
+                  contributor={c}
+                  onOpenModal={handleOpenModal}
+                  onOpenGitHub={handleOpenGitHubProfile}
+                />
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="contributors-pagination">
+                <button
+                  className="pagination-btn"
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  &laquo; Prev
+                </button>
+
+                {/* Show ellipsis-style pagination if too many pages, or simple map for now */}
+                {Array.from({ length: totalPages }, (_, i) => {
+                  // Simple logic for meaningful pagination: 
+                  // Show first, last, current, and surrounds. 
+                  // For now, let's keep it simple or user might want specific style.
+                  // Given the request "pagination", a list of numbers is standard.
+                  // But if there are many contributors, this list could be long.
+                  // Assuming "6 contributor cards per page" and potentially not huge number of contributors yet,
+                  // I'll render all page numbers for simplicity unless it grows too large.
+                  // Ideally max 5-7 visible buttons. 
+
+                  // However, let's implement a simpler "Prev Page Next" if pages > 10? 
+                  // Or just render all for now as the prompt is basic.
+                  return (
+                    <button
+                      key={i + 1}
+                      className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                      onClick={() => paginate(i + 1)}
+                    >
+                      {i + 1}
+                    </button>
+                  );
+                })}
+
+                <button
+                  className="pagination-btn"
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next &raquo;
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
 
