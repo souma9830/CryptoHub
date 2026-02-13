@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import { getBookmarks, toggleBookmark } from "../services/bookmarkService";
-import { generateBlogPosts } from "../components/Blog";
+import { generateBlogPosts } from "../data/blogData";
 import { FiBookmark, FiArrowLeft, FiLoader } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
